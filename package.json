@@ -1,0 +1,14 @@
+{
+  "name": "simplecrud",
+  "version": "1.0.0",
+  "description": "Simple CrUD",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Opeeny",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
