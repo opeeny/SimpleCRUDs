@@ -15,27 +15,25 @@ MongoClient.connect(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(client => {
-    const collection = client.db("fine_quotes").collection("quotes");
+    const database = client.db("fine_quotes");
+    const quotesCollection = database.collection("quotes");
     console.log("Connected to the Database");
     client.close;
-
     //GET handler, create a server that browsers can listen to
 app.get("/", (req, res) => {
     //res.send(__dirname + '/index.html');
     res.sendFile(__dirname + '/index.html');
-    /*collection('quotes').find().toArray()
-        .then(results => {
-            console.log(results);
-            console.log('Check on the OUTPUT', results);
-        }).catch(error => console.log(error));
-    */
+    database.collection('quotes').find().toArray()
+    .then(results => {
+        console.log(results);
+    }).catch(error => console.log(error));
  });
  
     //POST handler
 app.post("/quotes", (req, res) => {
     //console.log(req.body); 
-    const collection = client.db("fine_quotes").collection("quotes");
-    collection.insertOne(req.body)
+    const quotesCollection = client.db("fine_quotes").collection("quotes");
+    quotesCollection.insertOne(req.body)
         .then(result => {
             console.log(req.body);
             res.redirect('/');
